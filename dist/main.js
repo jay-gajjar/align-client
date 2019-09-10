@@ -5763,15 +5763,17 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var SearchPipe = /** @class */ (function () {
     function SearchPipe() {
     }
-    SearchPipe.prototype.transform = function (value, args) {
+    SearchPipe.prototype.transform = function (value, type, args) {
         if (!value)
             return null;
         if (!args)
             return value;
         args = args.toLowerCase();
-        return value.filter(function (item) {
-            return JSON.stringify(item.first_name + item.last_name).toLowerCase().includes(args);
-        });
+        if (type == 'dashboard') {
+            return value.filter(function (item) {
+                return JSON.stringify(item.first_name + item.last_name).toLowerCase().includes(args);
+            });
+        }
     };
     SearchPipe = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Pipe"])({
